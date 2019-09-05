@@ -1,5 +1,6 @@
 package springboot.cache.service;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheConfig;
@@ -25,6 +26,9 @@ public class UserService {
     @Resource
     private CacheManager cacheManager;
 
+    @Resource
+    private DruidDataSource druidDataSource;
+
     @Cacheable("test")
     public User getUser(Integer id){
         log.info("正在查询数据库");
@@ -41,7 +45,7 @@ public class UserService {
     @Caching
     public List<User> list() {
         log.info("正在查询数据库");
-        log.info(cacheManager.toString());
+        log.info(druidDataSource.toString());
         return userMapper.list();
     }
 }
