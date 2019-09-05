@@ -208,3 +208,50 @@ public Address getAddress(final Customer customer)() {...}
 
 `unless` 在调用方法后进行评估。
 
+
+
+
+
+#### 整合Caffeine
+
+Caffeine是一个非常接近最优的强大缓存，其性能远比常用的ehcache和Guava cache更强。
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>com.github.ben-manes.caffeine</groupId>
+    <artifactId>caffeine</artifactId>
+    <version>2.7.0</version>
+</dependency>
+```
+
+其实Spring中已经内置了CaffeineCacheManager，你可以直接使用，但是不具备定制功能。
+
+```java
+@Configuration
+public class CaffeineCacheConfig {
+
+ public CacheManager cacheManager() {
+  CaffeineCacheManager cacheManager = new CaffeineCacheManager("test");
+  cacheManager.setCaffeine(caffeineCacheBuilder());
+  return cacheManager;
+ }
+
+ Caffeine < Object, Object > caffeineCacheBuilder() {
+  return Caffeine.newBuilder()
+   .initialCapacity(100)
+   .maximumSize(500)
+   .expireAfterAccess(10, TimeUnit.MINUTES)
+   .weakKeys()
+   .recordStats();
+ }
+}
+
+```
+
+CaffeineCacheManager其实本身也内置了一个map，装有多个缓存容器，初始化时可以指定多个cacheName，相当于将多个不同名的缓存容器交由CacheManager管理。
+
