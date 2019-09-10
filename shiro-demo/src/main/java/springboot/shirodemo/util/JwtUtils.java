@@ -7,6 +7,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import javax.xml.transform.Source;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class JwtUtils {
             JWTCreator.Builder builder = JWT.create()
                     .withIssuer(ISSUER)
                     //设置过期时间为2小时
-                    .withExpiresAt(DateUtils.addHours(new Date(), 2));
+                    .withExpiresAt(new Date());
             claims.forEach(builder::withClaim);
             return builder.sign(algorithm);
         } catch (Exception e) {
@@ -47,11 +48,23 @@ public class JwtUtils {
             JWTVerifier verifier = JWT.require(algorithm).withIssuer(ISSUER).build();
             DecodedJWT jwt = verifier.verify(token);
             map = jwt.getClaims();
+            System.out.println(map);
+            System.out.println(jwt.getExpiresAt());
         } catch (Exception e) {
             throw new Exception("鉴权失败");
         }
         Map<String, String> resultMap = new HashMap<>(map.size());
-        map.forEach((k, v) -> resultMap.put(k, v.asString()));
+        map.forEach((k, v) -> resultMap.put(k, v.asString()==null?v.asDate().toString():v.asString()));
         return resultMap;
+    }
+
+    public static void main(String[] args) throws Exception {
+        Map<String,String> map =new HashMap<>();
+        map.put("password","kevin");
+        map.put("username","bob");
+        System.out.println(map);
+        String token=JwtUtils.createToken(map);
+        System.out.println(JwtUtils.verifyToken(token));
+
     }
 }
