@@ -25,7 +25,7 @@ public class ShiroDemoApplicationTests {
 
     @Test
     public void test122() throws Exception {
-        
+
     }
 
 }
