@@ -25,11 +25,7 @@ public class ShiroDemoApplicationTests {
 
     @Test
     public void test122() throws Exception {
-        Map<String,String> map =new HashMap<>();
-        map.put("password","kevin");
-        map.put("username","bob");
-        System.out.println(map);
-        System.out.println(JwtUtils.createToken(map));
+        
     }
 
 }

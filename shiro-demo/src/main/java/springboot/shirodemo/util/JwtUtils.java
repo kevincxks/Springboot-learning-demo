@@ -58,13 +58,13 @@ public class JwtUtils {
         return resultMap;
     }
 
-    public static void main(String[] args) throws Exception {
-        Map<String,String> map =new HashMap<>();
-        map.put("password","kevin");
-        map.put("username","bob");
-        System.out.println(map);
-        String token=JwtUtils.createToken(map);
-        System.out.println(JwtUtils.verifyToken(token));
 
-    }
+
+
+
+
+
+
+
+
 }
