@@ -1,6 +1,8 @@
 package springboot.redisdemo.model;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import redis.clients.jedis.Jedis;
@@ -8,6 +10,7 @@ import redis.clients.jedis.Jedis;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Data
 @Accessors(chain = true)
@@ -18,6 +21,8 @@ public class Person {
     private Integer identify;
 
     private Integer age;
+
+
 
     private String nickname;
 
@@ -79,6 +84,7 @@ public class Person {
         writeHashToRedis(person);
         Person person1 = readHashFromRedis(95290);
         System.out.println(person1);
+
 
     }
 }
