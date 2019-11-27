@@ -9,18 +9,28 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import javax.swing.tree.TreeNode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class RedisMain {
 
     public static void main(String[] args) {
         //连接池配置
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxTotal(10); //最大连接数
-        //连接池
         JedisPool jedisPool = new JedisPool(poolConfig,"localhost",6379);
-
         Jedis jedis = jedisPool.getResource();
 
         System.out.println(jedis.ping());
 
     }
+
+
+
+}
+
+class Solution {
+
 }
