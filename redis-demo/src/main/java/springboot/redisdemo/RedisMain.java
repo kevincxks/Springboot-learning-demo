@@ -17,13 +17,8 @@ import java.util.List;
 public class RedisMain {
 
     public static void main(String[] args) {
+        
         //连接池配置
-        JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(10); //最大连接数
-        JedisPool jedisPool = new JedisPool(poolConfig,"localhost",6379);
-        Jedis jedis = jedisPool.getResource();
-
-        System.out.println(jedis.ping());
 
     }
 
