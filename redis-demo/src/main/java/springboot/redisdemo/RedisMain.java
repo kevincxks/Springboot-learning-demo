@@ -17,15 +17,12 @@ import java.util.List;
 public class RedisMain {
 
     public static void main(String[] args) {
-        
-        //连接池配置
-
+        String test = "test";
+        test.intern();
     }
 
 
 
 }
 
-class Solution {
 
-}
