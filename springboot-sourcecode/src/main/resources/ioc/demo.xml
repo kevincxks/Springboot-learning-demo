@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.xkyxkyxky.springbootsourcecode.bean.Student">
+        <constructor-arg index="0" value="xky"/>
+        <constructor-arg index="1" value="13"/>
+        <constructor-arg index="2">
+            <list>
+                <value>math</value>
+                <value>english</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="helloService" class="com.xkyxkyxky.springbootsourcecode.bean.HelloService">
+        <property name="student" ref="student"/>
+        <property name="animal" ref="cat"/>
+    </bean>
+
+
+    <bean id="animalFactory" class="com.xkyxkyxky.springbootsourcecode.bean.AnimalFactory"></bean>
+    <bean id="cat" class="com.xkyxkyxky.springbootsourcecode.bean.AnimalFactory" factory-bean="animalFactory" factory-method="getAnimal">
+        <constructor-arg value="Cat"/>
+    </bean>
+    <bean id="dog" class="com.xkyxkyxky.springbootsourcecode.bean.AnimalFactory" factory-bean="animalFactory" factory-method="getAnimal">
+        <constructor-arg value="Dog"/>
+    </bean>
+</beans>

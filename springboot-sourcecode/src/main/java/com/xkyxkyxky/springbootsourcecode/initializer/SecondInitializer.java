@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Order(1)
 @Component
-public class FirstInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+public class SecondInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         ConfigurableEnvironment environment = applicationContext.getEnvironment();
