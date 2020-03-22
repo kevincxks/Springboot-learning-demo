@@ -18,4 +18,9 @@ public class HelloService {
     public String animal() {
         return animal.getName();
     }
+
+    public void showSomething() {
+        System.out.println("aiyo");
+    }
 }
+    
